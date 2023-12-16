@@ -11,12 +11,11 @@ useGLTF.preload("src/assets/medieval_fantasy_book.glb");
 
 interface ModelProps {
   url: string;
-  [key: string]: any; // Allow additional props
+  [key: string]: any;
 }
 
 const Model: React.FC<ModelProps> = ({ url, ...props }) => {
   const { scene, animations } = useGLTF(url);
-  // Extract animation actions
   const modelAnimations = useAnimations(animations, scene);
   useEffect(() => {
     modelAnimations.names.map((ani) => modelAnimations.actions[ani]?.play());
@@ -35,7 +34,7 @@ const Logo = () => {
         <Suspense fallback={null}>
           <Model url="src/assets/medieval_fantasy_book.glb" />
         </Suspense>
-        <OrbitControls autoRotate />
+        <OrbitControls autoRotate enablePan={false} enableZoom={false} />
       </Canvas>
       <Loader />
     </>

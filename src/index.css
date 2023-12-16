@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  @apply transition-colors duration-200;
+}
+@layer base {
+  :root {
+    --color-bkg: 210deg 40% 98%;
+    --color-content: 217deg 32.6% 17.5%;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bkg: 217deg 32.6% 17.5%;
+      --color-content: 210deg 40% 98%;
+    }
+  }
+  html[data-theme="dark"] {
+    --color-bkg: 217deg 32.6% 17.5%;
+    --color-content: 210deg 40% 98%;
+  }
+  html[data-theme="light"] {
+    --color-bkg: 210deg 40% 98%;
+    --color-content: 217deg 32.6% 17.5%;
+  }
+}
