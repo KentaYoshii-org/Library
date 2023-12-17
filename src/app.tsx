@@ -2,6 +2,7 @@ import Home from "./pages/home";
 import Shelf from "./pages/shelf";
 import { Link, Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const storedTheme =
@@ -49,10 +50,12 @@ const App = () => {
           />
         </svg>
       </button>
-      <Routes>
-        <Route path="/" element={<Home mode={darkMode} />} />
-        <Route path="/bookshelf" element={<Shelf />} />
-      </Routes>
+      <AnimatePresence>
+        <Routes>
+          <Route path="/" element={<Home mode={darkMode} />} />
+          <Route path="/bookshelf" element={<Shelf />} />
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 };

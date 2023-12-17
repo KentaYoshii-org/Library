@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Points, PointMaterial } from "@react-three/drei";
+import { Points, PointMaterial, Loader } from "@react-three/drei";
 import * as random from "maath/random";
 
 export const StarBG = (props: { mode: boolean }) => {
@@ -9,6 +9,7 @@ export const StarBG = (props: { mode: boolean }) => {
       <Canvas camera={{ position: [0, 0, 1] }}>
         <Stars darkMode={props.mode} />
       </Canvas>
+      <Loader />
     </div>
   );
 };
