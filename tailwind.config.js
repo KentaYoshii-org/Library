@@ -6,6 +6,7 @@ export default {
       colors: {
         bkg: "hsl(var(--color-bkg) / <alpha-value>)",
         content: "hsl(var(--color-content) / <alpha-value>)",
+        title_bkg: "hsl(var(--color-title_bkg) / <alpha-value>)",
       },
     },
   },

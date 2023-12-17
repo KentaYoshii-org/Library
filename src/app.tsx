@@ -1,6 +1,6 @@
 import Home from "./pages/home";
 import Shelf from "./pages/shelf";
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 const App = () => {
@@ -12,7 +12,6 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(storedTheme === "dark");
   document.documentElement.setAttribute("data-theme", storedTheme);
 
-  
   const toggleMode = () => {
     const currentTheme = document.documentElement.getAttribute("data-theme");
     const targetTheme = currentTheme === "light" ? "dark" : "light";
@@ -22,9 +21,12 @@ const App = () => {
   };
 
   return (
-    <div className="text-content bg-bkg">
+    <div className="text-content bg-bkg bgTheme">
+      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[4rem]  rounded-full pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors duration-100 backdrop-blur-[3px]">
+        <Link to={"/"}>Kenbrary</Link>
+      </h1>
       <button
-        className="absolute z-10 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 top-5 right-5"
+        className="absolute z-20 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 top-5 right-5 backdrop-blur-[3px] rounded-full"
         onClick={toggleMode}
         aria-label="Toggle Mode"
       >
@@ -48,7 +50,7 @@ const App = () => {
         </svg>
       </button>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home mode={darkMode} />} />
         <Route path="/bookshelf" element={<Shelf />} />
       </Routes>
     </div>
