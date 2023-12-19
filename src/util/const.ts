@@ -3,4 +3,5 @@ export const // Books API base
   // Book shelf IDs
   FAVORITES = 0,
   TO_READ = 2,
-  HAVE_READ = 4;
+  HAVE_READ = 4,
+  BOOKS_PER_PAGE = 20;
