@@ -23,11 +23,11 @@ const App = () => {
 
   return (
     <div className="text-content bg-bkg bgTheme">
-      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[4rem]  rounded-full pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors duration-100 backdrop-blur-[3px]">
+      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[4rem]  rounded-md pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors bg-bkg">
         <Link to={"/"}>Kenbrary</Link>
       </h1>
       <button
-        className="absolute z-20 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 top-5 right-5 backdrop-blur-[3px] rounded-full"
+        className="absolute z-20 w-6 h-6 rounded-full md:w-8 md:h-8 lg:w-10 lg:h-10 top-5 right-5 bg-bkg"
         onClick={toggleMode}
         aria-label="Toggle Mode"
       >
