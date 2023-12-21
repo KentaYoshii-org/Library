@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
 const App = () => {
+    
   const storedTheme =
     localStorage.getItem("theme") ||
     (window.matchMedia("(prefers-color-scheme: dark)").matches

@@ -12,6 +12,7 @@ const Shelf = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [page, setPage] = useState(0);
   const [reachEnd, setReachEnd] = useState(false);
+  const [scrollToTopVis, setScrollToTopVis] = useState(false);
 
   useEffect(() => {
     // Initial Load
@@ -27,6 +28,22 @@ const Shelf = () => {
       .catch((e) => {
         console.log(e);
       });
+  }, []);
+
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setScrollToTopVis(true);
+    } else {
+      setScrollToTopVis(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const onPageChange = (isNext: boolean) => {
@@ -129,6 +146,33 @@ const Shelf = () => {
             </button>
           )}
         </div>
+        {scrollToTopVis && (
+          <button
+            id="to-top-button"
+            className="fixed z-20 w-6 h-6 border-0 rounded-full bottom-5 right-5 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-bkg/90"
+            onClick={() => {
+              window.scroll({
+                top: 0,
+                behavior: "smooth",
+              });
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-full h-full"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+              />
+            </svg>
+          </button>
+        )}
       </div>
     </motion.div>
   );
