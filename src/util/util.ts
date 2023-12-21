@@ -14,17 +14,28 @@ export const getReadBooks = async (forPage: number) => {
     const res = await axios.get(endpoint, {
       params: {
         key: config.GAPI_KEY,
-        fields: "items(volumeInfo/title, volumeInfo/authors, volumeInfo/imageLinks/smallThumbnail)",
+        fields:
+          "items(volumeInfo/title, volumeInfo/authors, volumeInfo/imageLinks/smallThumbnail)",
         maxResults: BOOKS_PER_PAGE,
         startIndex: forPage * BOOKS_PER_PAGE,
       },
     });
+    if (res.status === 200 && Object.keys(res.data).length === 0) {
+      // reach the end
+      return [];
+    }
     return res.data.items.map((item: any) => {
+      const title = item.volumeInfo.title;
+      const imageURL =
+        item.volumeInfo.imageLinks === undefined
+          ? ""
+          : item.volumeInfo.imageLinks.smallThumbnail;
+      const authors = item.volumeInfo.authors;
       return {
-        title: item.volumeInfo.title,
+        title: title,
         // description: item.volumeInfo.description,
-        imageURL: item.volumeInfo.imageLinks.smallThumbnail,
-        authors: item.volumeInfo.authors,
+        imageURL: imageURL,
+        authors: authors,
         // publishedDate: item.volumeInfo.publishedDate,
         // pageCount: item.volumeInfo.pageCount,
       };
