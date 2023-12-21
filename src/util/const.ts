@@ -4,4 +4,4 @@ export const // Books API base
   FAVORITES = 0,
   TO_READ = 2,
   HAVE_READ = 4,
-  BOOKS_PER_PAGE = 20;
+  BOOKS_PER_PAGE = 21;

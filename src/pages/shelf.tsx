@@ -8,9 +8,11 @@ import { Card, PulseCard } from "../components/card";
 const pCards = Array(BOOKS_PER_PAGE).fill(0);
 
 const Shelf = () => {
+  const storedPage = localStorage.getItem("page") || 0;
+
   const [load, setLoad] = useState(true);
   const [books, setBooks] = useState<Book[]>([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(Number(storedPage));
   const [reachEnd, setReachEnd] = useState(false);
   const [scrollToTopVis, setScrollToTopVis] = useState(false);
 
@@ -22,6 +24,7 @@ const Shelf = () => {
           // If request errored
           return;
         }
+        console.log(data);
         setBooks(data);
         setLoad(false);
       })
@@ -40,7 +43,6 @@ const Shelf = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -53,6 +55,7 @@ const Shelf = () => {
       top: 0,
       behavior: "smooth",
     });
+    localStorage.setItem("page", String(pageToLoad));
     getReadBooks(pageToLoad)
       .then((data) => {
         if (!data) {
@@ -81,7 +84,9 @@ const Shelf = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
     >
+      {/* main content */}
       <div className="min-h-screen">
+        {/* cards */}
         <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-[6rem] md:pt-[8rem] lg:pt-[10rem] md:justify-items-center gap-2">
           {!load
             ? books.map((book, idx) => (
@@ -90,10 +95,17 @@ const Shelf = () => {
                   title={book.title}
                   authors={book.authors}
                   imageURL={book.imageURL}
+                  categories={book.categories}
                 />
               ))
             : pCards.map((_, idx) => <PulseCard key={idx} />)}
         </div>
+        {!load && books.length === 0 && (
+          <div className="relative flex justify-center text-center -translate-x-1/2 left-1/2">
+            <p className="p-2 bg-bkg">You have reached the end!</p>
+          </div>
+        )}
+        {/* pagination */}
         <div className="flex justify-center pt-5 pb-5 ">
           {page !== 0 && (
             <button
@@ -149,7 +161,7 @@ const Shelf = () => {
         {scrollToTopVis && (
           <button
             id="to-top-button"
-            className="fixed z-20 w-6 h-6 border-0 rounded-full bottom-5 right-5 md:w-8 md:h-8 lg:w-10 lg:h-10 bg-bkg/90"
+            className="fixed z-20 w-10 h-10 border-0 rounded-full bottom-5 right-5 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-bkg/90"
             onClick={() => {
               window.scroll({
                 top: 0,
@@ -163,11 +175,11 @@ const Shelf = () => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="w-full h-full"
+              className="w-full h-full p-1"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
               />
             </svg>

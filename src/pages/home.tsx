@@ -16,7 +16,7 @@ const Home = (props: { mode: boolean }) => {
         <div className="relative w-full h-full overflow-auto">
           <Logo />
         </div>
-        <button className="absolute text-center left-1/2 bottom-16 -translate-x-1/2 text-[2rem] md:text-[2.5rem] lg:text-[3.0rem] rounded-md p-5 hover:bg-gray-400 transition-colors z-10 bg-bkg">
+        <button className="absolute text-center left-1/2 bottom-16 -translate-x-1/2 text-[2rem] md:text-[2.5rem] lg:text-[3.0rem] rounded-md pl-5 pr-5 hover:bg-gray-400 transition-colors z-10 bg-bkg/80">
           <Link to={"/bookshelf"}>Enter</Link>
         </button>
         <StarBG mode={props.mode} />

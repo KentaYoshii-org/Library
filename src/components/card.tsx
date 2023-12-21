@@ -4,11 +4,12 @@ interface CardProps {
   imageURL: string;
   authors: string[];
   title: string;
+  categories: string[];
 }
 
 export const Card = (props: CardProps) => {
   return (
-    <div className="relative flex p-2 sm:p-4 bg-bkg w-[100%]">
+    <div className="relative flex p-2 sm:p-4 bg-bkg w-[100%] gap-1 shadow-xl">
       <div className="flex items-center justify-center basis-4/12 min-h-[140px]">
         {props.imageURL === "" ? (
           <img src={no_image} className="w-4/5" />
@@ -16,11 +17,15 @@ export const Card = (props: CardProps) => {
           <img src={props.imageURL} />
         )}
       </div>
-      <div className="text-right basis-8/12">
-        <h2 className="text-[1rem] md:text-[1.25rem] underline">
+      <div className="relative text-right basis-8/12 min-h-[140px]">
+        <h2 className="text-[1rem] md:text-[1.25rem] underline underline-offset-4">
           {props.title}
         </h2>
         <p className="text-[1rem] pt-2">{props.authors.join(",")}</p>
+        <div className="text-[1rem] absolute right-0 bottom-1 flex">
+          {props.categories &&
+            props.categories.map((c, idx) => <p key={idx} className="underline underline-offset-4 decoration-purple-400 decoration-4">{c}</p>)}
+        </div>
       </div>
     </div>
   );

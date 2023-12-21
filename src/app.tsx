@@ -24,11 +24,11 @@ const App = () => {
 
   return (
     <div className="text-content bg-bkg bgTheme">
-      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[4rem]  rounded-md pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors bg-bkg">
+      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[4rem]  rounded-md pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors bg-bkg/80">
         <Link to={"/"}>Kenbrary</Link>
       </h1>
       <button
-        className="absolute z-20 w-6 h-6 rounded-full md:w-8 md:h-8 lg:w-10 lg:h-10 top-5 right-5 bg-bkg"
+        className="absolute z-20 w-10 h-10 rounded-full md:w-12 md:h-12 lg:w-14 lg:h-14 top-5 right-5 bg-bkg/80"
         onClick={toggleMode}
         aria-label="Toggle Mode"
       >
@@ -38,7 +38,7 @@ const App = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="absolute top-0 right-0 w-full h-full z-1"
+          className="absolute top-0 right-0 w-full h-full p-1 z-1"
         >
           <path
             strokeLinecap="round"
