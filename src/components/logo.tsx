@@ -7,7 +7,7 @@ import {
 } from "@react-three/drei";
 import { Suspense, useEffect } from "react";
 
-useGLTF.preload("src/assets/medieval_fantasy_book.glb");
+useGLTF.preload("Library/src/assets/medieval_fantasy_book.glb");
 
 interface ModelProps {
   url: string;
