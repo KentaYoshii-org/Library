@@ -1,6 +1,7 @@
 {
   "name": "my-app",
-  "private": true,
+  "private": false,
+  "homepage": "https://kentayoshii-org.github.io/Library",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
