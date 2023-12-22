@@ -7,7 +7,7 @@ import config from "./config/config";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={config.PUBLIC_URL}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
