@@ -1,7 +1,7 @@
 import Home from "./pages/home";
 import Shelf from "./pages/shelf";
 import { Link, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Book from "./pages/book";
 
@@ -21,6 +21,22 @@ const App = () => {
     localStorage.setItem("theme", targetTheme);
     setDarkMode((prev) => !prev);
   };
+
+  const [scrollToTopVis, setScrollToTopVis] = useState(false);
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      setScrollToTopVis(true);
+    } else {
+      setScrollToTopVis(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="text-content bg-bkg bgTheme">
@@ -58,6 +74,33 @@ const App = () => {
           <Route path="/bookshelf/:book" element={<Book />} />
         </Routes>
       </AnimatePresence>
+      {scrollToTopVis && (
+        <button
+          id="to-top-button"
+          className="fixed z-20 w-10 h-10 border-0 rounded-full bottom-5 right-5 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-bkg/90"
+          onClick={() => {
+            window.scroll({
+              top: 0,
+              behavior: "smooth",
+            });
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-full h-full p-1"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

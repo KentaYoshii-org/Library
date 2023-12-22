@@ -8,11 +8,32 @@ export const getBook = async (forBook: string) => {
     const res = await axios.get(endpoint, {
       params: {
         key: config.GAPI_KEY,
-        projection: "lite",
       },
     });
-    console.log(res);
-    return res.data;
+    const isbn = res.data.volumeInfo.industryIdentifiers[0].identifier;
+    const title = res.data.volumeInfo.title;
+    const subtitle =
+      res.data.volumeInfo.subtitle === undefined
+        ? ""
+        : res.data.volumeInfo.subtitle;
+    const thumbnail =
+      res.data.volumeInfo.imageLinks === undefined
+        ? ""
+        : res.data.volumeInfo.imageLinks.thumbnail;
+    const authors = res.data.volumeInfo.authors;
+    const description = res.data.volumeInfo.description;
+    const publishedDate = res.data.volumeInfo.publishedDate;
+    const pageCount = res.data.volumeInfo.pageCount;
+    return {
+      isbn,
+      title,
+      subtitle,
+      thumbnail,
+      authors,
+      description,
+      publishedDate,
+      pageCount,
+    };
   } catch (e) {
     console.log(e);
     return null;
