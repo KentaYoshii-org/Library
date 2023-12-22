@@ -92,6 +92,7 @@ const Shelf = () => {
             ? books.map((book, idx) => (
                 <Card
                   key={idx}
+                  id={book.id}
                   title={book.title}
                   authors={book.authors}
                   imageURL={book.imageURL}

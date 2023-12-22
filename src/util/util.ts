@@ -2,6 +2,23 @@ import { BOOKS_API_BASE_URL, BOOKS_PER_PAGE, HAVE_READ } from "./const";
 import config from "../config/config";
 import axios from "axios";
 
+export const getBook = async (forBook: string) => {
+  const endpoint = BOOKS_API_BASE_URL + "volumes/" + forBook;
+  try {
+    const res = await axios.get(endpoint, {
+      params: {
+        key: config.GAPI_KEY,
+        projection: "lite",
+      },
+    });
+    console.log(res);
+    return res.data;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
+};
+
 export const getReadBooks = async (forPage: number) => {
   const endpoint =
     BOOKS_API_BASE_URL +
@@ -15,7 +32,7 @@ export const getReadBooks = async (forPage: number) => {
       params: {
         key: config.GAPI_KEY,
         fields:
-          "items(volumeInfo/title, volumeInfo/authors, volumeInfo/imageLinks/smallThumbnail, volumeInfo/categories)",
+          "items(id, volumeInfo/title, volumeInfo/authors, volumeInfo/imageLinks/smallThumbnail, volumeInfo/categories)",
         maxResults: BOOKS_PER_PAGE,
         startIndex: forPage * BOOKS_PER_PAGE,
       },
@@ -25,6 +42,7 @@ export const getReadBooks = async (forPage: number) => {
       return [];
     }
     return res.data.items.map((item: any) => {
+      const id = item.id;
       const title = item.volumeInfo.title;
       const imageURL =
         item.volumeInfo.imageLinks === undefined
@@ -33,13 +51,11 @@ export const getReadBooks = async (forPage: number) => {
       const authors = item.volumeInfo.authors;
       const categories = item.volumeInfo.categories;
       return {
+        id,
         title,
-        // description: item.volumeInfo.description,
         imageURL,
         authors,
         categories,
-        // publishedDate: item.volumeInfo.publishedDate,
-        // pageCount: item.volumeInfo.pageCount,
       };
     });
   } catch (e) {

@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
 import no_image from "../assets/no_image.png";
 
 interface CardProps {
+  id: string;
   imageURL: string;
   authors: string[];
   title: string;
@@ -18,9 +20,9 @@ export const Card = (props: CardProps) => {
         )}
       </div>
       <div className="relative text-right basis-8/12 min-h-[140px]">
-        <h2 className="text-[1rem] md:text-[1.25rem] underline underline-offset-4">
+        <Link to={"/bookshelf/" + props.id} className="text-[1rem] md:text-[1.25rem] underline underline-offset-4">
           {props.title}
-        </h2>
+        </Link>
         <p className="text-[1rem] pt-2">{props.authors.join(",")}</p>
         <div className="text-[1rem] absolute right-0 bottom-1 flex">
           {props.categories &&

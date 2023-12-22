@@ -3,9 +3,9 @@ import Shelf from "./pages/shelf";
 import { Link, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import Book from "./pages/book";
 
 const App = () => {
-    
   const storedTheme =
     localStorage.getItem("theme") ||
     (window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -24,11 +24,11 @@ const App = () => {
 
   return (
     <div className="text-content bg-bkg bgTheme">
-      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[4rem]  rounded-md pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors bg-bkg/80">
+      <h1 className="absolute top-5 left-5 z-10 text-center text-[2.5rem] md:text-[3rem] lg:text-[3.rem]  rounded-md pl-3 pr-3 -translate-x-5 -translate-y-5 m-2 hover:bg-gray-400 transition-colors bg-bkg/80">
         <Link to={"/"}>Kenbrary</Link>
       </h1>
       <button
-        className="absolute z-20 w-10 h-10 rounded-full md:w-12 md:h-12 lg:w-14 lg:h-14 top-5 right-5 bg-bkg/80"
+        className="absolute z-20 w-10 h-10 rounded-full md:w-12 md:h-12 lg:w-14 lg:h-14 top-3 right-3 bg-bkg/80"
         onClick={toggleMode}
         aria-label="Toggle Mode"
       >
@@ -55,6 +55,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home mode={darkMode} />} />
           <Route path="/bookshelf" element={<Shelf />} />
+          <Route path="/bookshelf/:book" element={<Book />} />
         </Routes>
       </AnimatePresence>
     </div>
