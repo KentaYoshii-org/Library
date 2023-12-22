@@ -6,8 +6,9 @@ import {
   Loader,
 } from "@react-three/drei";
 import { Suspense, useEffect } from "react";
+import config from "../config/config";
 
-useGLTF.preload("/Library/src/assets/medieval_fantasy_book.glb");
+useGLTF.preload(config.GLB_PATH);
 
 interface ModelProps {
   url: string;
@@ -32,7 +33,7 @@ const Logo = () => {
         <directionalLight position={[-10, 20, 0]} intensity={1.5} />
         <directionalLight position={[0, -10, 0]} intensity={0.25} />
         <Suspense fallback={null}>
-          <Model url="src/assets/medieval_fantasy_book.glb" />
+          <Model url={config.GLB_PATH} />
         </Suspense>
         <OrbitControls autoRotate enablePan={false} enableZoom={false} />
       </Canvas>
