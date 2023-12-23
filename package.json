@@ -1,13 +1,11 @@
 {
   "name": "my-app",
   "private": false,
-  "homepage": "https://kentayoshii-org.github.io/Library",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "bunx --bun vite",
     "build": "bunx --bun vite build",
-    "postbuild": "cp dist/index.html dist/404.html",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
