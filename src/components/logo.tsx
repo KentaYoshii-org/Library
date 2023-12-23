@@ -9,7 +9,6 @@ import { Suspense, useEffect } from "react";
 import config from "../config/config";
 
 useGLTF.preload(config.GLB_PATH);
-
 interface ModelProps {
   url: string;
   [key: string]: any;
