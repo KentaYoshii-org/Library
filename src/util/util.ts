@@ -53,7 +53,7 @@ export const getReadBooks = async (forPage: number) => {
       params: {
         key: config.GAPI_KEY,
         fields:
-          "items(id, volumeInfo/title, volumeInfo/authors, volumeInfo/imageLinks/smallThumbnail, volumeInfo/categories)",
+          "items(id, volumeInfo/title, volumeInfo/authors, volumeInfo/imageLinks/thumbnail, volumeInfo/categories)",
         maxResults: BOOKS_PER_PAGE,
         startIndex: forPage * BOOKS_PER_PAGE,
       },
@@ -68,7 +68,7 @@ export const getReadBooks = async (forPage: number) => {
       const imageURL =
         item.volumeInfo.imageLinks === undefined
           ? ""
-          : item.volumeInfo.imageLinks.smallThumbnail;
+          : item.volumeInfo.imageLinks.thumbnail;
       const authors = item.volumeInfo.authors;
       const categories = item.volumeInfo.categories;
       return {
