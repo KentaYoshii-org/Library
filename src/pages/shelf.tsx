@@ -113,7 +113,7 @@ const Shelf = () => {
                   d="M13 5H1m0 0 4 4M1 5l4-4"
                 />
               </svg>
-              Previous
+              Prev
             </button>
           )}
           {!reachEnd && (
