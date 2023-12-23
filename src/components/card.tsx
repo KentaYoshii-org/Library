@@ -20,13 +20,25 @@ export const Card = (props: CardProps) => {
         )}
       </div>
       <div className="relative text-right basis-8/12 min-h-[140px]">
-        <Link to={"/bookshelf/" + props.id} className="text-[1rem] md:text-[1.25rem] underline underline-offset-4">
+        <Link
+          to={"/bookshelf/" + props.id}
+          className="text-[1rem] md:text-[1.25rem] underline underline-offset-4"
+        >
           {props.title}
         </Link>
-        <p className="text-[1rem] pt-2">{props.authors.join(",")}</p>
+        {props.authors !== undefined && (
+          <p className="text-[1rem] pt-2">{props.authors.join(",")}</p>
+        )}
         <div className="text-[1rem] absolute right-0 bottom-1 flex">
           {props.categories &&
-            props.categories.map((c, idx) => <p key={idx} className="underline underline-offset-4 decoration-purple-400 decoration-4">{c}</p>)}
+            props.categories.map((c, idx) => (
+              <p
+                key={idx}
+                className="underline underline-offset-4 decoration-purple-400 decoration-4"
+              >
+                {c}
+              </p>
+            ))}
         </div>
       </div>
     </div>
