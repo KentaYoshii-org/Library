@@ -26,10 +26,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.16.0
+      - uses: oven-sh/setup-bun@v1
       - name: Build
         run: |
-          npm install
-          npm run build
+          bun install
+          bun run build
       - name: Copy GLB
         run: | 
           cp ./src/assets/medieval_fantasy_book.glb ./dist/assets/medieval_fantasy_book.glb

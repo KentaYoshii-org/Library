@@ -86,7 +86,7 @@ const Shelf = () => {
         </div>
         {!load && books.length === 0 && (
           <div className="relative flex justify-center text-center -translate-x-1/2 left-1/2">
-            <p className="p-2 bg-bkg">You have reached the end!</p>
+            <p className="p-2 bg-bkg">You have reached the end</p>
           </div>
         )}
         {/* pagination */}
